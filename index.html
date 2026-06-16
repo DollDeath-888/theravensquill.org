@@ -1,0 +1,677 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Raven's Quill</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+    <style>
+        /* 1. Background Setup */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            /* This targets your background image, tells it to repeat vertically, and centers it */
+            background-image: url('https://i.ibb.co/ZzLq08ZL/Senza-titolo-91-20260615002413.png');
+            background-repeat: repeat-y;
+            background-position: top center;
+            background-size: contain; 
+            min-height: 300vh; /* Ensures the page is tall enough to repeat the background roughly 3 times */
+            position: relative;
+            font-family: serif;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* 2. Top Spider Web Decoration */
+        .spider-web-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 250px; /* Adjust size as needed */
+            height: auto;
+            z-index: 10;
+        }
+
+        .spider-web-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 250px; /* Adjust size as needed */
+            height: auto;
+            z-index: 10;
+            transform: scaleX(-1); /* Flips the web for the right side */
+        }
+
+        /* 3. Side Decorations */
+        .side-border-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50px; /* Adjust width to fit your lace PNG border */
+            height: 100%; /* Spans the entire 3-page height */
+            background-image: url('https://i.ibb.co/pjwzZHg2/Senza-titolo-91-20260614235308.png');
+            background-repeat: repeat-y;
+            z-index: 5;
+        }
+
+        .side-border-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50px; /* Adjust width to fit your lace PNG border */
+            height: 100%; /* Spans the entire 3-page height */
+            background-image: url('https://i.ibb.co/gbwXVSGC/Senza-titolo-91-20260614235308-1.png');
+            background-repeat: repeat-y;
+            z-index: 5;
+        }
+
+        /* Main Content Layout Container */
+        .main-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 20; /* Sits cleanly above the borders and backgrounds */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 40px;
+            text-align: center;
+        }
+
+        /* 4. "The Raven's Quill" Title Customization */
+        .blog-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 101px; /* Set precisely to your Canva layout dimension */
+            color: #ffffff;
+            margin: 0;
+            font-weight: normal;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        /* 5. Under-Title Decoration Divider */
+        .title-divider {
+            margin-top: 15px;
+            max-width: 90%;
+            height: auto;
+        }
+      
+      /* --- THE STAMP CODE-CAKE SECTION --- */
+        
+        .stamp-cake-container {
+            width: 100%;
+            max-width: 600px; /* Adjust based on how wide you want the stamp section to be */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 40px; /* Space before the flowers row */
+        }
+
+        /* Border Images (Top & Bottom slices of the cake) */
+        .cake-border-top, .cake-border-bottom {
+            width: 100%;
+            height: auto;
+            display: block; /* Removes any unwanted white spaces underneath images */
+        }
+
+        /* The viewport window that holds the moving stamps */
+        .stamp-track-window {
+            width: 100%;
+            overflow: hidden; /* Hides the stamps that roll off the edges */
+            background-color: transparent;
+            display: flex;
+            position: relative;
+        }
+
+        /* The actual row moving infinitely to the right */
+        .stamp-row {
+            display: flex;
+            white-space: nowrap;
+            /* Runs the loop right-to-left seamlessly, making it look like it scrolls right */
+            animation: scrollRight 12s linear infinite; 
+        }
+
+        /* Individual Stamp Formatting */
+        .stamp-row img {
+            height: 50px; /* Adjust height to match your desired stamp size */
+            width: auto;
+            display: inline-block;
+            padding: 0;
+            margin: 0; /* Keeps them strictly attached with no spaces */
+        }
+
+        /* Keyframes for the looping movement */
+        @keyframes scrollRight {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0%);
+              }
+
+        /* --- INTERACTIVE FLOWER NAVIGATION --- */
+        .flower-nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Space between each flower link */
+            width: 100%;
+            max-width: 650px;
+            margin-bottom: 40px; /* Space before the next element below */
+        }
+
+        .flower-link {
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .flower-link img {
+            width: 120px; /* Size can be changed depending on your PNG exports */
+            height: auto;
+            display: block;
+            transition: filter 0.4s ease, transform 0.3s ease;
+            filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0)); /* Invisible glow by default */
+        }
+
+        /* Hover effect creating the slight white glow around the graphic shapes */
+        .flower-link:hover img {
+            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.85));
+            transform: scale(1.03); /* Tiny hover lift to make it feel extra responsive */
+
+
+          /* --- VINYL MP3 MUSIC PLAYER --- */
+        .music-player-container {
+            display: flex;
+            align-items: center;
+            background-color: transparent;
+            width: 90%;
+            max-width: 700px;
+            padding: 20px;
+            margin: 20px auto 40px auto;
+            box-sizing: border-box;
+        }
+
+        /* Vinyl Stack Left Box */
+        .vinyl-deck {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            flex-shrink: 0;
+        }
+
+        /* Base Player/Sleeve Graphics Layer */
+        .vinyl-base {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Center Spinning Record Graphic Layer */
+        .vinyl-record {
+            position: absolute;
+            top: 10px; /* Tweak to center inside your base container if needed */
+            left: 10px;
+            width: 160px;
+            height: 160px;
+            z-index: 2;
+            border-radius: 50%;
+            /* Paused initially until the music is triggered */
+            animation: spinRecord 4.5s linear infinite;
+            animation-play-state: paused; 
+        }
+
+        /* Tonearm Overlay Layer */
+        .vinyl-tonearm {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: auto;
+            height: 100%;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        /* Continuous vinyl spin keyframes */
+        @keyframes spinRecord {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Volume Slider Column Container */
+        .volume-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 40px;
+            height: 180px;
+            margin: 0 15px;
+        }
+
+        /* Background Volume Line Image */
+        .volume-bar-bg {
+            position: absolute;
+            height: 100%;
+            width: auto;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Hidden standard browser slider laid directly over your graphic line */
+        .volume-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 160px;
+            height: 40px;
+            background: transparent;
+            transform: rotate(-90deg); /* Flips it into a vertical slider */
+            cursor: pointer;
+            z-index: 2;
+            margin: 0;
+        }
+
+        /* Styling the moving thumb with your Skull PNG for Webkit (Chrome/Safari) */
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px; /* Size of your skull */
+            height: 25px;
+            background: url('https://i.ibb.co/yFg7XPts/download-removebg-preview-1.png') no-repeat center center;
+            background-size: contain;
+            border: none;
+        }
+
+        /* Styling the moving thumb with your Skull PNG for Firefox */
+        .volume-slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: url('https://i.ibb.co/yFg7XPts/download-removebg-preview-1.png') no-repeat center center;
+            background-size: contain;
+            border: none;
+        }
+
+        /* Track Metadata Display & Action Interface Panel (Right Side) */
+        .player-controls-panel {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding-left: 10px;
+            position: relative;
+        }
+
+        /* Counter Tracking Text (e.g., 1 / 4) */
+        .track-counter {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-family: 'Pinyon Script', cursive;
+            font-size: 24px;
+            color: #ffffff;
+            opacity: 0.8;
+        }
+
+        /* Interactive Dynamic Text Displays */
+        .song-title-text {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 45px;
+            color: #ffffff;
+            margin: 0 0 5px 0;
+            line-height: 1.1;
+            text-align: left;
+        }
+
+        .artist-name-text {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 28px;
+            color: #ffffff;
+            opacity: 0.8;
+            margin: 0 0 20px 0;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        /* Control Array row */
+        .buttons-row {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            padding-left: 20px;
+        }
+
+        .control-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .control-btn img {
+            height: 35px; /* Adjust scale based on your control button PNG specs */
+            width: auto;
+            transition: transform 0.2s ease;
+        }
+
+        .control-btn:hover img {
+            transform: scale(1.1);
+        }
+
+          /* --- STAGGERED INTRO SPLIT TITLE SECTION --- */
+        .intro-title-block {
+            width: 100%;
+            max-width: 650px;
+            margin: 40px auto 30px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Standardized row container using a grid layout to match left/right balance */
+        .intro-title-row {
+            display: grid;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Row 1 Layout Configuration: Text Left, Line Right */
+        .row-left-heavy {
+            grid-template-columns: auto 1fr;
+            text-align: left;
+        }
+
+        /* Row 2 Layout Configuration: Line Left, Text Right */
+        .row-right-heavy {
+            grid-template-columns: 1fr auto;
+            text-align: right;
+        }
+
+        .intro-title-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 65px; /* Adjust size based on your specific scaling preference */
+            color: #ffffff;
+            margin: 0;
+            white-space: nowrap;
+            line-height: 1.1;
+        }
+
+        /* Adding explicit padding to separate texts smoothly from the graphic elements */
+        .text-padding-right {
+            padding-right: 20px;
+        }
+
+        .text-padding-left {
+            padding-left: 20px;
+        }
+
+        /* Graphic Lines Styles */
+        .rhombus-divider-line {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+          /* --- BLOG INTRODUCTION BODY TEXT --- */
+        .intro-body-container {
+            max-width: 620px;
+            width: 90%;
+            margin: 0 auto 50px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .intro-paragraph {
+            /* Using a beautiful, sharp italic serif font selection to mimic the journal feel */
+            font-family: "Georgia", "Times New Roman", serif;
+            font-style: italic;
+            font-size: 19px;
+            line-height: 1.7;
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+            letter-spacing: 0.3px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+          }
+    </style>
+</head>
+<body>
+
+    <div class="side-border-left"></div>
+    <div class="side-border-right"></div>
+
+<img src="https://i.ibb.co/xqM67wRk/Senza-titolo-91-20260614234635.png" alt="" class="spider-web-top">
+
+    <div class="main-container">
+        
+        <h1 class="blog-title">The Raven's Quill</h1>
+
+        <img src="https://i.ibb.co/TMvDmwvT/Senza-titolo-91-20260614235724.png" alt="Decorative flourish" class="title-divider">
+
+      <div class="stamp-cake-container">
+            
+            <img src="https://i.ibb.co/4RKmSWLY/Senza-titolo-91-20260615005840.png" alt="" class="cake-border-top">
+
+            <div class="stamp-track-window">
+                <div class="stamp-row">
+                    <img src="https://i.ibb.co/nNnwvD8g/tumblr-de1e80270627eb62f933043b5307273a-e1dc9d47-100.jpg" alt=""><img src="https://i.ibb.co/QFSpk5zx/tumblr-f40cdc794ea5e7f2837c55e06e42d18e-e011d70c-100.jpg" alt=""><img src="https://i.ibb.co/mCDpzB92/tumblr-32fbaaf9ee60977c979efefc2bd4be8b-45497132-100.png" alt=""><img src="https://i.ibb.co/QFy0RpcT/tumblr-4568af5992c0d1feb5b5fb42e3391200-21a7ed5e-100.webp" alt=""><img src="https://i.ibb.co/PZy9R2tx/tumblr-fa640d93864b46a2af5045967c1dbe63-7cb7005d-100.png" alt=""><img src="https://i.ibb.co/mC574k31/tumblr-a5445d3657ef23b24568d5cfc7ac50c3-cd372b47-100.webp" alt=""><img src="https://i.ibb.co/ym6LFrS2/tumblr-45e501aaae5df2c0c31531bae115e809-3343d1bf-100.jpg" alt=""><img src="https://i.ibb.co/7J14pdYh/tumblr-dd4d91cb430b19b24a8b25ebdf9bba1e-d86aeb61-100.jpg" alt="">
+                    
+                    <img src="https://i.ibb.co/nNnwvD8g/tumblr-de1e80270627eb62f933043b5307273a-e1dc9d47-100.jpg" alt=""><img src="https://i.ibb.co/QFSpk5zx/tumblr-f40cdc794ea5e7f2837c55e06e42d18e-e011d70c-100.jpg" alt=""><img src="https://i.ibb.co/mCDpzB92/tumblr-32fbaaf9ee60977c979efefc2bd4be8b-45497132-100.png" alt=""><img src="https://i.ibb.co/QFy0RpcT/tumblr-4568af5992c0d1feb5b5fb42e3391200-21a7ed5e-100.webp" alt=""><img src="https://i.ibb.co/PZy9R2tx/tumblr-fa640d93864b46a2af5045967c1dbe63-7cb7005d-100.png" alt=""><img src="https://i.ibb.co/mC574k31/tumblr-a5445d3657ef23b24568d5cfc7ac50c3-cd372b47-100.webp" alt=""><img src="https://i.ibb.co/ym6LFrS2/tumblr-45e501aaae5df2c0c31531bae115e809-3343d1bf-100.jpg" alt=""><img src="https://i.ibb.co/7J14pdYh/tumblr-dd4d91cb430b19b24a8b25ebdf9bba1e-d86aeb61-100.jpg" alt="">
+                </div>
+            </div>
+
+            <img src="https://i.ibb.co/MykSdHpC/Senza-titolo-91-20260615005957.png" alt="" class="cake-border-bottom">
+
+        </div>
+
+      <div class="flower-nav-container">
+            <a href="art.html" class="flower-link">
+                <img src="https://i.ibb.co/MyYzHRdC/Senza-titolo-87-20260612174139.png" alt="Art Category">
+            </a>
+
+            <a href="writing.html" class="flower-link">
+                <img src="https://i.ibb.co/F4sw2zNk/Senza-titolo-86-20260612173738.png" alt="Writing Category">
+            </a>
+
+            <a href="specials.html" class="flower-link">
+                <img src="https://i.ibb.co/Z6TQwPrm/Senza-titolo-89-20260612174948.png" alt="Specials Category">
+            </a>
+
+            <a href="shrines.html" class="flower-link">
+                <img src="https://i.ibb.co/LL6vq3p/Senza-titolo-88-20260612174544.png" alt="Shrines Category">
+            </a>
+        </div>
+
+      <div class="stamp-cake-container">
+            <img src="https://i.ibb.co/4RKmSWLY/Senza-titolo-91-20260615005840.png" alt="" class="cake-border-top">
+            <div class="stamp-track-window">
+                <div class="stamp-row">
+                    <img src="https://i.ibb.co/Kz35bQSP/tumblr-ced9c3e5778bf219e20c0bac5d054e54-a5bc73a4-100.webp" alt=""><img src="https://i.ibb.co/0VRP7HxP/tumblr-1f4543f369994471709d2d4c81343d59-4c5a7afa-100.png" alt=""><img src="https://i.ibb.co/rRR2jV0K/tumblr-eef15284588a419c0701942be8f612d6-5ca432ca-100.png" alt=""><img src="https://i.ibb.co/tM0mkW37/tumblr-519da1825b1a6c2f96a772f0f194d1d7-f48e1c98-100.webp" alt=""><img src="https://i.ibb.co/1YFKnVpc/tumblr-99c9e71409cfcbd4d2b5ce0b16453244-e1b1be42-100.png" alt=""><img src="https://i.ibb.co/G3FYfsqT/tumblr-c307f1a9db4fa56cf104aa7ece97e72b-207b086b-100.webp" alt=""><img src="https://i.ibb.co/bMWRbdRs/tumblr-5467dc008840f761297b862d2a66a231-a0251857-100.png" alt=""><img src="https://i.ibb.co/8LcFVYn4/tumblr-82222b0583faec5b06d7b24136bc4076-dca14b10-100.png" alt="">
+                    <img src="https://i.ibb.co/Kz35bQSP/tumblr-ced9c3e5778bf219e20c0bac5d054e54-a5bc73a4-100.webp" alt=""><img src="https://i.ibb.co/0VRP7HxP/tumblr-1f4543f369994471709d2d4c81343d59-4c5a7afa-100.png" alt=""><img src="https://i.ibb.co/rRR2jV0K/tumblr-eef15284588a419c0701942be8f612d6-5ca432ca-100.png" alt=""><img src="https://i.ibb.co/tM0mkW37/tumblr-519da1825b1a6c2f96a772f0f194d1d7-f48e1c98-100.webp" alt=""><img src="https://i.ibb.co/1YFKnVpc/tumblr-99c9e71409cfcbd4d2b5ce0b16453244-e1b1be42-100.png" alt=""><img src="https://i.ibb.co/G3FYfsqT/tumblr-c307f1a9db4fa56cf104aa7ece97e72b-207b086b-100.webp" alt=""><img src="https://i.ibb.co/bMWRbdRs/tumblr-5467dc008840f761297b862d2a66a231-a0251857-100.png" alt=""><img src="https://i.ibb.co/8LcFVYn4/tumblr-82222b0583faec5b06d7b24136bc4076-dca14b10-100.png" alt="">
+                </div>
+            </div>
+            <img src="https://i.ibb.co/MykSdHpC/Senza-titolo-91-20260615005957.png" alt="" class="cake-border-bottom">
+        </div>
+
+      <div class="music-player-container">
+            
+            <audio id="audio-engine" src=""></audio>
+
+            <div class="vinyl-deck">
+                <img src="https://i.ibb.co/Hp1NSKxJ/1000042292-removebg-preview.png" alt="" class="vinyl-base">
+                <img src="https://i.ibb.co/L4hBdHS/download-2026-06-08-T121548-843-removebg-preview.png" alt="" id="player-disc" class="vinyl-record">
+                <img src="https://i.ibb.co/WN65N6KG/download-2026-06-08-T120348-370-removebg-preview.png" alt="" class="vinyl-tonearm">
+            </div>
+
+            <div class="volume-section">
+                <img src="https://i.ibb.co/Fbvm489S/Senza-titolo-85-20260609205003.png" alt="" class="volume-bar-bg">
+                <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.01" value="0.5">
+            </div>
+
+            <div class="player-controls-panel">
+                <div id="track-index-display" class="track-counter">1/4</div>
+                
+                <h2 id="song-title" class="song-title-text">Song Name</h2>
+                <h3 id="artist-name" class="artist-name-text">by Artist's name</h3>
+
+                <div class="buttons-row">
+                    <button class="control-btn" id="btn-prev">
+                        <img src="https://i.ibb.co/Lh9rT6Js/rewind-button-png-removebg-preview.png" alt="Previous">
+                    </button>
+                    
+                    <button class="control-btn" id="btn-toggle-play">
+                        <img src="https://i.ibb.co/FLD5FgH2/pausa-el-icono-de-color-blanco-removebg-preview.png" id="play-pause-icon" alt="Play">
+                    </button>
+                    
+                    <button class="control-btn" id="btn-next">
+                        <img src="https://i.ibb.co/jkcybGLk/removebg-preview-3.png" alt="Next">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+      
+<div class="intro-title-block">
+            
+            <div class="intro-title-row row-left-heavy">
+                <span class="intro-title-text text-padding-right">What's this</span>
+                <img src="https://i.ibb.co/jkq1ncV8/Senza-titolo-92-20260616010755.png" alt="" class="rhombus-divider-line">
+            </div>
+
+            <div class="intro-title-row row-right-heavy">
+                <img src="https://i.ibb.co/jkq1ncV8/Senza-titolo-92-20260616010755.png" alt="" class="rhombus-divider-line">
+                <span class="intro-title-text text-padding-left">blog about?...</span>
+            </div>
+        </div>
+
+      <div class="intro-body-container">
+            <p class="intro-paragraph">
+                Welcome to The Raven's Quill, my personal space I share on the web hoping people will relate and enjoy my content. As you will explore the blog, you will find art, makeup, journal pages, creative writing, researches about topics like history, psychology, music and much more. I created this blog for fun and seeing other blogs I could not hold myself back. Hope you're comfortable in this tiny space of the internet, put on some music and enjoy...
+            </p>
+        </div>
+
+
+      <img src="https://i.ibb.co/zvpj4qd/Senza-titolo-91-20260614235724.png" alt="Decorative flourish closing accent" class="bottom-divider">
+      
+  </div>
+  
+    <script>
+        // --- 1. PLAYLIST DESIGN CONFIGURATION ---
+        // Edit your 4 MP3 file links, custom song titles, and artist names right here!
+        const playlist = [
+            {
+                title: "Suspended In Dusk",
+                artist: "by Type O Negative",
+                src: "https://litter.catbox.moe/nbbuifx5khfutj3y.mp3"
+            },
+            {
+                title: "Charlotte Sometimes",
+                artist: "by The Cure",
+                src: "https://litter.catbox.moe/djasovhh0uy0rps2.mp3"
+            },
+            {
+                title: "Musette and Drums",
+                artist: "by Cocteau Twins",
+                src: "https://litter.catbox.moe/m1weq946q7vzj95c.mp3"
+            },
+            {
+                title: "The Funeral Party",
+                artist: "by The Cure",
+                src: "https://litter.catbox.moe/eetjxqome5h30w41.mp3"
+            }
+        ];
+
+        // --- 2. FILE IMAGE RESOURCE REGISTER ---
+        // Insert your asset asset handles right here for quick image swaps
+        const imgPlayBtn = "https://i.ibb.co/FLD5FgH2/pausa-el-icono-de-color-blanco-removebg-preview.png"; 
+        const imgPauseBtn = "https://i.ibb.co/6Ryf72fR/removebg-preview.png";
+
+        // --- 3. CORE LOGIC ENGINE ---
+        let currentTrackIndex = 0;
+        let isPlaying = false;
+
+        const audioElement = document.getElementById('audio-engine');
+        const diskGraphic = document.getElementById('player-disc');
+        const playPauseIcon = document.getElementById('play-pause-icon');
+        const volumeSlider = document.getElementById('volume-slider');
+        
+        const textTitle = document.getElementById('song-title');
+        const textArtist = document.getElementById('artist-name');
+        const textCounter = document.getElementById('track-index-display');
+
+        const btnToggle = document.getElementById('btn-toggle-play');
+        const btnNext = document.getElementById('btn-next');
+        const btnPrev = document.getElementById('btn-prev');
+
+        // Initializing the application state
+        function loadTrack(index) {
+            const track = playlist[index];
+            audioElement.src = track.src;
+            textTitle.textContent = track.title;
+            textArtist.textContent = track.artist;
+            textCounter.textContent = `${index + 1}/${playlist.length}`;
+        }
+
+        function playTrack() {
+            audioElement.play();
+            isPlaying = true;
+            playPauseIcon.src = imgPauseBtn;
+            diskGraphic.style.animationPlayState = 'running';
+        }
+
+        function pauseTrack() {
+            audioElement.pause();
+            isPlaying = false;
+            playPauseIcon.src = imgPlayBtn;
+            diskGraphic.style.animationPlayState = 'paused';
+        }
+
+        // Toggle action handler
+        btnToggle.addEventListener('click', () => {
+            if (isPlaying) {
+                pauseTrack();
+            } else {
+                playTrack();
+            }
+        });
+
+        // Forward skip track handler
+        btnNext.addEventListener('click', () => {
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+            loadTrack(currentTrackIndex);
+            if (isPlaying) playTrack();
+        });
+
+        // Rewind track handler
+        btnPrev.addEventListener('click', () => {
+            currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+            loadTrack(currentTrackIndex);
+            if (isPlaying) playTrack();
+        });
+
+        // Real-time custom volume tracker
+        volumeSlider.addEventListener('input', (e) => {
+            audioElement.volume = e.target.value;
+        });
+
+        // Handle auto-advancing to next song when track naturally ends
+        audioElement.addEventListener('ended', () => {
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+            loadTrack(currentTrackIndex);
+            playTrack();
+        });
+
+        // Run system allocation setup on start
+        loadTrack(currentTrackIndex);
+        audioElement.volume = volumeSlider.value;
+    </script>
+  
+</body>
+</html>
