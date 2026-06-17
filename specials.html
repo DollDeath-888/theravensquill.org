@@ -1,0 +1,183 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Raven's Quill - Specials</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <style>
+        /* 1. Background Setup */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            
+            /* PASTE YOUR 1920x1080 BACKGROUND PNG LINK BETWEEN THE SINGLE QUOTES BELOW */
+            background-image: url('https://i.ibb.co/6RpbBDxZ/Senza-titolo-94-20260617144534.png');
+            
+            background-repeat: no-repeat;
+            background-position: top center;
+            background-size: 100% auto;
+            min-height: 100vh;
+            position: relative;
+            color: #ffffff;
+            font-family: serif;
+            overflow-x: hidden;
+        }
+
+        /* 2. Side Decorations Setup */
+        .side-border-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50px;
+            height: 100%;
+            
+            /* PASTE YOUR LEFT SIDE PNG LINK BETWEEN THE SINGLE QUOTES BELOW */
+            background-image: url('https://i.ibb.co/pjwzZHg2/Senza-titolo-91-20260614235308.png');
+            
+            background-repeat: repeat-y;
+            z-index: 5;
+        }
+
+        .side-border-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50px;
+            height: 100%;
+            
+            /* PASTE YOUR RIGHT SIDE PNG LINK BETWEEN THE SINGLE QUOTES BELOW */
+            background-image: url('https://i.ibb.co/gbwXVSGC/Senza-titolo-91-20260614235308-1.png');
+            
+            background-repeat: repeat-y;
+            z-index: 5;
+        }
+
+        /* 3. Title Section Setup */
+        .title-container {
+            max-width: 800px;
+            margin: 40px auto 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            z-index: 20;
+            padding: 0 20px;
+        }
+
+        .title-line {
+            flex-grow: 1;
+            max-width: 250px;
+            height: auto;
+            display: block;
+        }
+
+        .gallery-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 90px;
+            color: #ffffff;
+            margin: 0;
+            font-weight: normal;
+            line-height: 1;
+            white-space: nowrap;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        /* 4. Menu Navigation Section Setup (4 Items) */
+        .menu-container {
+            max-width: 600px;
+            margin: 60px auto 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+            z-index: 20;
+            padding: 0 20px;
+        }
+
+        .menu-link {
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .menu-link img {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            display: block;
+            transition: filter 0.4s ease, transform 0.3s ease;
+            filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
+        }
+
+        .menu-link:hover img {
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.85));
+            transform: scale(1.04);
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-audio-engine" loop></audio>
+
+    <div class="side-border-left"></div>
+    <div class="side-border-right"></div>
+
+    <div class="title-container">
+        <img src="https://i.ibb.co/T6nYkf0/Senza-titolo-94-20260617152040.png" alt="" class="title-line">
+        
+        <h1 class="gallery-title">Art</h1>
+        
+        <img src="https://i.ibb.co/T6nYkf0/Senza-titolo-94-20260617152040.png" alt="" class="title-line">
+    </div>
+
+    <div class="menu-container">
+        <a href="guestbook.html" class="menu-link">
+            <img src="https://i.ibb.co/QFz61G7y/IMG-20260617-182842.png" alt="Guestbook">
+        </a>
+
+        <a href="collages.html" class="menu-link">
+            <img src="https://i.ibb.co/84Kz5vVn/IMG-20260617-182823.png" alt="Collages">
+        </a>
+
+        <a href="tarotspread.html" class="menu-link">
+            <img src="https://i.ibb.co/KjzPRrQd/IMG-20260617-182806.png" alt="Tarot Spread">
+        </a>
+
+        <a href="whatsinmybag.html" class="menu-link">
+            <img src="https://i.ibb.co/DD87BgwJ/IMG-20260617-182742.png" alt="What's In My Bag">
+        </a>
+    </div>
+
+    <script>
+        // PASTE YOUR SINGLE MP3 AUDIO LINK INSIDE THE QUOTES BELOW
+        const singleTrackSrc = "https://litter.catbox.moe/5ruslakh60pd05zn.mp3";
+
+        const audio = document.getElementById('bg-audio-engine');
+
+        // Set the track source
+        if (singleTrackSrc !== "") {
+            audio.src = singleTrackSrc;
+        }
+
+        // Play audio cleanly once user interactions are recorded on screen
+        function startAutoplay() {
+            audio.play().then(() => {
+                document.removeEventListener('click', startAutoplay);
+                document.removeEventListener('keydown', startAutoplay);
+            }).catch(error => {
+                console.log("Autoplay context waiting for initial interaction.");
+            });
+        }
+
+        document.addEventListener('click', startAutoplay);
+        document.addEventListener('keydown', startAutoplay);
+    </script>
+
+</body>
+</html>
