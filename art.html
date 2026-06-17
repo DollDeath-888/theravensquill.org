@@ -1,0 +1,197 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Raven's Quill - Art</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <style>
+        /* 1. Background Setup */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            
+            /* PASTE YOUR 1920x1080 BACKGROUND PNG LINK BETWEEN THE SINGLE QUOTES BELOW */
+            background-image: url('https://i.ibb.co/6RpbBDxZ/Senza-titolo-94-20260617144534.png');
+            
+            background-repeat: no-repeat;
+            background-position: top center;
+            background-size: 100% auto; /* Fits the 1920px width perfectly and scales down proportionally */
+            min-height: 100vh;
+            position: relative; /* Required for absolute positioning of side borders */
+            color: #ffffff;
+            font-family: serif;
+            overflow-x: hidden; /* Prevents horizontal scrolling from side decorations */
+        }
+
+        /* 2. Side Decorations Setup */
+        .side-border-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50px; /* Adjust width to match your lace PNG border */
+            height: 100%;
+            
+            /* PASTE YOUR LEFT SIDE PNG LINK BETWEEN THE SINGLE QUOTES BELOW */
+            background-image: url('https://i.ibb.co/pjwzZHg2/Senza-titolo-91-20260614235308.png');
+            
+            background-repeat: repeat-y;
+            z-index: 5;
+        }
+
+        .side-border-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50px; /* Adjust width to match your lace PNG border */
+            height: 100%;
+            
+            /* PASTE YOUR RIGHT SIDE PNG LINK BETWEEN THE SINGLE QUOTES BELOW */
+            background-image: url('https://i.ibb.co/gbwXVSGC/Senza-titolo-91-20260614235308-1.png');
+            
+            background-repeat: repeat-y;
+            z-index: 5;
+        }
+
+        /* 3. Title Section Setup */
+        .title-container {
+            max-width: 800px;
+            margin: 40px auto 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px; /* Space between the lines and the text */
+            position: relative;
+            z-index: 20;
+            padding: 0 20px;
+        }
+
+        .title-line {
+            flex-grow: 1;
+            max-width: 250px; /* Adjust if you want the lines shorter or longer */
+            height: auto;
+            display: block;
+        }
+
+        .gallery-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 90px; /* Matches the prominent size from your layout */
+            color: #ffffff;
+            margin: 0;
+            font-weight: normal;
+            line-height: 1;
+            white-space: nowrap;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+/* 4. Menu Navigation Section Setup */
+        .menu-container {
+            max-width: 600px;
+            margin: 60px auto 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px; /* Space between each button frame */
+            position: relative;
+            z-index: 20;
+            padding: 0 20px;
+        }
+
+        .menu-link {
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .menu-link img {
+            width: 100%;
+            max-width: 450px; /* Adjust based on your preferred image scale */
+            height: auto;
+            display: block;
+            transition: filter 0.4s ease, transform 0.3s ease;
+            filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
+        }
+
+        /* Hover effect creating a subtle pulse and white glow outline */
+        .menu-link:hover img {
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.85));
+            transform: scale(1.04); /* Tiny responsive lifting pulse */
+    </style>
+</head>
+<body>
+
+    <audio id="bg-audio-engine"></audio>
+      
+    <div class="side-border-left"></div>
+    <div class="side-border-right"></div>
+
+      <div class="title-container">
+        <img src="https://i.ibb.co/T6nYkf0/Senza-titolo-94-20260617152040.png" alt="" class="title-line">
+        
+        <h1 class="gallery-title">Art</h1>
+        
+        <img src="https://i.ibb.co/T6nYkf0/Senza-titolo-94-20260617152040.png" alt="" class="title-line">
+    </div>
+
+    <div class="menu-container">
+        <a href="makeups.html" class="menu-link">
+            <img src="https://i.ibb.co/xtq4WT8y/IMG-20260617-162648.png" alt="Makeups">
+        </a>
+
+        <a href="selfies.html" class="menu-link">
+            <img src="https://i.ibb.co/rRkJh3W0/IMG-20260617-162711.png" alt="Selfies">
+        </a>
+
+        <a href="drawings.html" class="menu-link">
+            <img src="https://i.ibb.co/Z6zvSgDz/IMG-20260617-162751.png" alt="Drawings">
+        </a>
+    </div>
+
+      <script>
+        // PASTE YOUR MP3 AUDIO LINKS INSIDE THE QUOTES BELOW
+        const playlist = [
+            "https://litter.catbox.moe/086f85uvr6tg7poz.mp3"
+      
+        ];
+
+        let currentTrackIndex = 0;
+        const audio = document.getElementById('bg-audio-engine');
+
+        // Initialize the audio track source
+        function loadTrack(index) {
+            if (playlist[index] && playlist[index] !== "") {
+                audio.src = playlist[index];
+            }
+        }
+
+        // Attempt to play automatically as soon as user interacts with the document container
+        function startAutoplay() {
+            audio.play().then(() => {
+                // Success: remove listeners once audio is streaming cleanly
+                document.removeEventListener('click', startAutoplay);
+                document.removeEventListener('keydown', startAutoplay);
+            }).catch(error => {
+                console.log("Autoplay blocked by browser policy. Awaiting user interaction context.");
+            });
+        }
+
+        // Cycle cleanly forward automatically when a song reaches natural completion elements
+        audio.addEventListener('ended', () => {
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+            loadTrack(currentTrackIndex);
+            audio.play();
+        });
+
+        // Initialize first configuration array values
+        loadTrack(currentTrackIndex);
+
+        // Listen for standard browser input interaction rules to clear sound restrictions natively
+        document.addEventListener('click', startAutoplay);
+        document.addEventListener('keydown', startAutoplay);
+    </script>
+      
+</body>
+</html>
