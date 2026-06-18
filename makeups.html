@@ -1,0 +1,151 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Raven's Quill - Makeups</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <style>
+        /* 1. Background Setup (Repeats twice vertically) */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            
+            /* PASTE YOUR 1920x1080 BACKGROUND PNG LINK BETWEEN THE SINGLE QUOTES BELOW */
+            background-image: url('https://i.ibb.co/fGDLzX6F/IMG-20260618-203641.jpg');
+            
+            background-repeat: repeat-y; /* Repeats vertically as far down as needed */
+            background-position: top center;
+            background-size: 100% auto;
+            min-height: 100vh;
+            position: relative;
+            color: #ffffff;
+            font-family: serif;
+            overflow-x: hidden;
+        }
+
+        /* 2. Side Decorations Setup */
+        .side-border-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50px;
+            height: 100%;
+            
+            /* PASTE YOUR LEFT SIDE PNG LINK BETWEEN THE SINGLE QUOTES BELOW */
+            background-image: url('https://i.ibb.co/pjwzZHg2/Senza-titolo-91-20260614235308.png');
+            
+            background-repeat: repeat-y;
+            z-index: 5;
+        }
+
+        .side-border-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50px;
+            height: 100%;
+            
+            /* PASTE YOUR RIGHT SIDE PNG LINK BETWEEN THE SINGLE QUOTES BELOW */
+            background-image: url('https://i.ibb.co/gbwXVSGC/Senza-titolo-91-20260614235308-1.png');
+            
+            background-repeat: repeat-y;
+            z-index: 5;
+        }
+
+        /* 3. Title Section Setup */
+        .title-container {
+            max-width: 800px;
+            margin: 40px auto 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            z-index: 20;
+            padding: 0 20px;
+        }
+
+        .title-line {
+            flex-grow: 1;
+            max-width: 250px;
+            height: auto;
+            display: block;
+        }
+
+        .gallery-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 90px;
+            color: #ffffff;
+            margin: 0;
+            font-weight: normal;
+            line-height: 1;
+            white-space: nowrap;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        /* 4. Interactive Elements Grid (Mask, Bow, etc.) */
+        .items-grid {
+            max-width: 1000px;
+            margin: 80px auto 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px; /* Space between the floating items */
+            position: relative;
+            z-index: 20;
+            padding: 0 40px;
+        }
+
+        .grid-item {
+            display: inline-block;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item img {
+            width: auto;
+            max-height: 200px; /* Constrains size so elements don't get wildly huge */
+            display: block;
+            transition: filter 0.4s ease, transform 0.3s ease;
+            filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
+        }
+
+        /* Glowing and pulsing hover effect matching your main aesthetic */
+        .grid-item:hover img {
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.85));
+            transform: scale(1.06); /* Slight lifting pulse effect */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="side-border-left"></div>
+    <div class="side-border-right"></div>
+
+    <div class="title-container">
+        <img src="https://i.ibb.co/T6nYkf0/Senza-titolo-94-20260617152040.png" alt="" class="title-line">
+        
+        <h1 class="gallery-title">Makeups</h1>
+        
+        <img src="https://i.ibb.co/T6nYkf0/Senza-titolo-94-20260617152040.png" alt="" class="title-line">
+    </div>
+
+    <div class="items-grid">
+        
+        <a href="venetiancarnival.html" class="grid-item">
+            <img src="https://i.ibb.co/LXKk3ZkG/Senza-titolo-95-20260618111347.png" alt="Venetian Carnival Look">
+        </a>
+
+        <a href="musicalnotes.html" class="grid-item">
+            <img src="https://i.ibb.co/NnHBCbK3/Whats-App-Image-2026-06-18-at-15-43-37-removebg-preview.png" alt="Musical Notes Look">
+        </a>
+
+        </div>
+
+</body>
+</html>
