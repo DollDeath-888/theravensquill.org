@@ -124,6 +124,8 @@
 </head>
 <body>
 
+    <audio id="bg-audio-engine" loop></audio>
+
     <div class="side-border-left"></div>
     <div class="side-border-right"></div>
 
@@ -146,6 +148,30 @@
         </a>
 
         </div>
+
+    <script>
+        // PASTE YOUR MP3 LINK BETWEEN THE QUOTES BELOW
+        const songUrl = "https://litter.catbox.moe/9gm1r5uc42kz2zmq.mp3";
+
+        const audio = document.getElementById('bg-audio-engine');
+
+        if (songUrl !== "") {
+            audio.src = songUrl;
+        }
+
+        // Functions to bypass modern browser autoplay restrictions on first click/key
+        function startAutoplay() {
+            audio.play().then(() => {
+                document.removeEventListener('click', startAutoplay);
+                document.removeEventListener('keydown', startAutoplay);
+            }).catch(error => {
+                console.log("Autoplay waiting for initial page interaction context.");
+            });
+        }
+
+        document.addEventListener('click', startAutoplay);
+        document.addEventListener('keydown', startAutoplay);
+    </script>
 
 </body>
 </html>
