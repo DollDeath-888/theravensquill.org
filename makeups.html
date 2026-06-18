@@ -92,15 +92,14 @@
         .items-grid {
             max-width: 1000px;
             margin: 80px auto 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 50px; /* Space between the floating items */
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Creates exactly 4 columns per row */
+            gap: 40px; /* Space between the items vertically and horizontally */
             position: relative;
             z-index: 20;
             padding: 0 40px;
+            justify-items: center; /* Centers each image inside its grid slot */
         }
-
         .grid-item {
             display: inline-block;
             text-decoration: none;
